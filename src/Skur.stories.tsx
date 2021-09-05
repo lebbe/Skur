@@ -5,7 +5,7 @@ import Skur from './Skur'
 import { useWeatherInfoMock } from './WeatherInfo/useWeatherInfoMock'
 
 export default {
-  title: 'Test/Skur',
+  title: 'Pages/Skur',
 }
 
 export function Simple() {
