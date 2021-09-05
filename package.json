@@ -1,0 +1,26 @@
+{
+  "name": "skur",
+  "version": "0.0.0",
+  "description": "Rapporterer om vær og vind",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "keywords": [
+    "vær"
+  ],
+  "author": "Lars-Erik Bruce",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^17.0.20",
+    "@types/react-dom": "^17.0.9",
+    "typescript": "^4.4.2",
+    "vite": "^2.5.3"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
