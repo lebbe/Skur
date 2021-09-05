@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import WeatherInfo, { Temperature, WeatherCard } from './WeatherInfo'
 
-import Mockdata from './mock-data'
+import '../Skur.css'
+import { useWeatherInfoMock } from './useWeatherInfoMock'
 
 export default {
   title: 'Skur/Components/Weather Info',
@@ -9,21 +10,6 @@ export default {
 
 export function Simple() {
   return <WeatherInfo {...useWeatherInfoMock(59.9119, 10.7335)} />
-}
-
-export function useWeatherInfoMock(_: number, __: number) {
-  return {
-    units: {
-      air_pressure_at_sea_level: 'hPa',
-      air_temperature: 'celsius',
-      cloud_area_fraction: '%',
-      precipitation_amount: 'mm',
-      relative_humidity: '%',
-      wind_from_direction: 'degrees',
-      wind_speed: 'm/s',
-    },
-    timepoints: Mockdata.properties.timeseries,
-  }
 }
 
 export function WeatherCardSimple() {

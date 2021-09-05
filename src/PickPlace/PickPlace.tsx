@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import places from './places'
 
-type PickPlaceProps = {
+export type PickPlaceProps = {
   query: string
   setQuery: (query: string) => void
   doSearch: () => void
@@ -36,13 +36,15 @@ type APIResult = {
   navn: {
     geojson: {
       geometry: {
-        coordinates: [number, number]
+        coordinates: [number, number] | [number, number][]
       }
     }
   }[]
 }
 
-export function usePickPlace(setLatLong: (lat: number, long: number) => void) {
+export function usePickPlace(
+  setLatLong: (lat: number, long: number) => void
+): PickPlaceProps {
   const [query, setQuery] = useState('')
 
   async function doSearch() {
@@ -56,10 +58,15 @@ export function usePickPlace(setLatLong: (lat: number, long: number) => void) {
     )
 
     const json: APIResult = await response.json()
+    const coords = json.navn[0].geojson.geometry.coordinates
 
-    const [long, lat] = json.navn[0].geojson.geometry.coordinates
-
-    setLatLong(lat, long)
+    if (Array.isArray(coords[0])) {
+      const [long, lat] = coords[0]
+      setLatLong(lat, long)
+    } else if (typeof coords[1] === 'number') {
+      const [long, lat] = coords
+      setLatLong(lat, long)
+    }
   }
 
   return {

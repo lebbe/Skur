@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-type WeatherInfoProps = {
+export type WeatherInfoProps = {
   timepoints: TimePoint[]
   units: Units
 }
 
-type TimePoint = {
+export type TimePoint = {
   time: string
   data: {
     instant: {
@@ -41,7 +41,8 @@ type APIResult = {
   }
 }
 
-export function useWeatherInfo(lat: number, long: number) {
+export function useWeatherInfo(lat: number, long: number): WeatherInfoProps {
+  console.log(lat, long)
   const [units, setUnits] = useState({
     air_pressure_at_sea_level: 'hPa',
     air_temperature: 'celsius',
@@ -117,7 +118,7 @@ function DateTime({ datetime }: { datetime: string }) {
   ]
   const date = new Date(datetime)
   return (
-    <div>
+    <div className="skur-dateTime">
       {days[date.getDay()]} {date.getDate()} {months[date.getMonth()]}{' '}
       {date.getHours()}:{date.getMinutes().toString().padStart(2, '0')}
     </div>
@@ -197,7 +198,7 @@ export function WeatherCard({ units, timePoint }: WeatherCardProps) {
     wind_speed,
   } = timePoint.data.instant.details
   return (
-    <div>
+    <div className="skur-weatherCard">
       <DateTime datetime={timePoint.time} />
       <Sky
         cloud_area_fraction={cloud_area_fraction}

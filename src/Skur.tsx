@@ -1,15 +1,33 @@
 import React from 'react'
-import PickPlace, { useLatLong, usePickPlace } from './PickPlace/PickPlace'
-import WeatherInfo, { useWeatherInfo } from './WeatherInfo/WeatherInfo'
+import PickPlace, {
+  PickPlaceProps,
+  useLatLong,
+  usePickPlace,
+} from './PickPlace/PickPlace'
+import WeatherInfo, {
+  useWeatherInfo,
+  WeatherInfoProps,
+} from './WeatherInfo/WeatherInfo'
 
-export default function Skur() {
+export function useSkur() {
   const { lat, long, setLatLong } = useLatLong()
+  return {
+    pickPlace: usePickPlace(setLatLong),
+    weatherInfo: useWeatherInfo(lat, long),
+  }
+}
 
+type SkurProps = {
+  pickPlace: PickPlaceProps
+  weatherInfo: WeatherInfoProps
+}
+
+export default function Skur({ pickPlace, weatherInfo }: SkurProps) {
   return (
     <>
-      <PickPlace {...usePickPlace(setLatLong)}></PickPlace>
+      <PickPlace {...pickPlace}></PickPlace>
 
-      <WeatherInfo {...useWeatherInfo(lat, long)} />
+      <WeatherInfo {...weatherInfo} />
     </>
   )
 }
