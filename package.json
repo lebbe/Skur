@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
+    "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
     "build": "tsc && vite build"
   },
   "keywords": [
@@ -20,7 +21,12 @@
     "vite": "^2.5.3"
   },
   "dependencies": {
+    "prettier": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
   }
 }
